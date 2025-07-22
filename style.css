@@ -282,7 +282,7 @@ body {
     }
 }
 
-@media screen and (max-width:430px) {
+@media screen and (max-width:1000px) {
     body {
         min-width: 375px;
         min-height: 730px;

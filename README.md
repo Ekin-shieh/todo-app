@@ -1,22 +1,24 @@
-# Frontend Mentor - Todo app
+# Frontend Mentor - Todo app solution
 
-![Design preview for the Todo app coding challenge](./design/desktop-preview.jpg)
+This is a solution to the [Todo app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-## Welcome! 👋
+## Table of contents
 
-Thanks for checking out this front-end coding challenge.
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+- [Author](#author)
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects.
+## Overview
 
-**To do this challenge, you need a good understanding of HTML, CSS and JavaScript.**
+### The challenge
 
-## The challenge
-
-Your challenge is to build out this todo app and get it looking as close to the design as possible.
-
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
-
-Your users should be able to:
+Users should be able to:
 
 - View the optimal layout for the app depending on their device's screen size
 - See hover states for all interactive elements on the page
@@ -26,74 +28,92 @@ Your users should be able to:
 - Filter by all/active/complete todos
 - Clear all completed todos
 - Toggle light and dark mode
-- **Bonus**: Drag and drop to reorder items on the list
 
-Want some support on the challenge? [Join our community](https://www.frontendmentor.io/community) and ask questions in the **#help** channel.
+### Screenshot
 
-## Where to find everything
+![](./result/desktop-light.png)
+![](./result/desktop-dark.png)
+<img src="./result/mobile-light.png" style="width:200px;">
+<img src="./result/mobile-dark.png" style="width:200px;">
 
-Your task is to build out the project to the designs inside the `/design` folder. You will find both a mobile and a desktop version of the design. 
+### Links
 
-The designs are in JPG static format. Using JPGs will mean that you'll need to use your best judgment for styles such as `font-size`, `padding` and `margin`. 
+- Solution URL: [solution in github](https://github.com/Ekin-shieh/todo-app)
+- Live Site URL: [live site in gitpage](https://ekin-shieh.github.io/todo-app/)
 
-If you would like the design files (we provide Sketch & Figma versions) to inspect the design in more detail, you can [subscribe as a PRO member](https://www.frontendmentor.io/pro).
+## My process
 
-You will find all the required assets in the `/images` folder. The assets are already optimized.
+### Built with
 
-There is also a `style-guide.md` file containing the information you'll need, such as color palette and fonts.
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
+- Mobile-first workflow
+- Vanilla JavaScript
+- TypeScript
+- localStorage
 
-## Building your project
+### What I learned
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+Through this Todo App project, I reinforced several key frontend development skills, including:
+- Using semantic HTML5 tags to build a well-structured layout
+- Creating responsive designs with Flexbox and Grid for both mobile and desktop
+- Implementing light/dark theme toggling using classList.toggle()
+- Dynamically creating, updating, and deleting task elements with JavaScript
+- Persisting task data using localStorage
+- Enhancing code maintainability and type safety with TypeScript
+- Refreshing the task list dynamically after actions like completing or deleting tasks
+For example, I implemented modules like:
 
-1. Initialize your project as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/).
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+```ts
+model.addEventListener('click', ()=>{
+    if (model.src.includes('icon-sun.svg')) {
+        model.src = './images/icon-moon.svg';
+    } else {
+        model.src = './images/icon-sun.svg';
+    };
+    container.classList.toggle('night');
+});
+```
 
-## Deploying your project
+```ts
+function saveTasksToStorage(tasks: Task[]): void {
+  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(tasks));
+}
+```
 
-As mentioned above, there are many ways to host your project for free. Our recommended hosts are:
+```ts
+function filterAndRenderTasks(filter: "all" | "active" | "completed"): void {
+  const tasks = loadTasksFromStorage();
+  let filteredTasks: Task[] = [];
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+  if (filter === "all") {
+    filteredTasks = tasks;
+  } else if (filter === "active") {
+    filteredTasks = tasks.filter(task => !task.completed);
+  } else if (filter === "completed") {
+    filteredTasks = tasks.filter(task => task.completed);
+  }
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://medium.com/frontend-mentor/frontend-mentor-trusted-hosting-providers-bf000dfebe).
+  itemNum.textContent = `${filteredTasks.length} items left`;
 
-## Create a custom `README.md`
+  const list = document.getElementById("todo-list")!;
+  list.innerHTML = "";
+  filteredTasks.forEach(renderTask);
+}
+```
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+### Continued development
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+Although I successfully implemented most of the core features of the Todo App, the drag-and-drop sorting functionality proved to be complex. It involves handling multiple events (dragstart, dragover, drop, dragend) and dynamically inserting elements between others. I initially attempted to build this feature using the native Drag and Drop API, but due to the detailed event logic and strict type constraints in TypeScript, I eventually decided to skip it and focus on completing the rest of the features.
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
+In the future, I plan to:
+- Learn to implement drag-and-drop functionality using third-party libraries like react-beautiful-dnd in React projects
+- Gain a deeper understanding of DOM operations and the event model to better handle complex interactions
+- Refactor the project structure by separating UI and logic for better code reusability and modularity
+- Explore CSS animations or libraries like Framer Motion to enhance user experience
 
-## Submitting your solution
+## Author
 
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://medium.com/frontend-mentor/a-complete-guide-to-submitting-solutions-on-frontend-mentor-ac6384162248) for tips on how to do this.
-
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
-
-## Sharing your solution
-
-There are multiple places you can share your solution:
-
-1. Share your solution page in the **#finished-projects** channel of the [community](https://www.frontendmentor.io/community). 
-2. Tweet [@frontendmentor](https://twitter.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in the tweet. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on other social channels like LinkedIn.
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
-
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback. 
-
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
-
-## Got feedback for us?
-
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
-
-This challenge is completely free. Please share it with anyone who will find it useful for practice.
-
-**Have fun building!** 🚀
+- Frontend Mentor - [@Ekin-shieh](https://www.frontendmentor.io/profile/Ekin-shieh)
+- GitHub - [@Ekin-shieh](https://github.com/Ekin-shieh)
