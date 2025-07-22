@@ -165,10 +165,22 @@ body {
         color: hsl(234, 11%, 52%);
         padding: 20px;
         box-sizing: border-box;
-        display: grid;
-        align-items: center;
-        grid-template-columns: 3fr 1fr 1fr 1fr 3fr;
+        display: flex;
+        justify-content: center;
         font-size: 12px;
+        position: relative;
+    }
+
+    .filter {
+        position: absolute;
+        display: flex;
+        gap: 30px;
+        padding: 0 20px;
+    }
+
+    .hint {
+        position: absolute;
+        top: 80px;
     }
 
     #active:hover,
@@ -217,10 +229,16 @@ body {
     #todo-list {
         background: hsl(233, 14%, 35%);
         color: hsl(236, 33%, 92%);
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
     }
 
     .todo-item {
         border-bottom: hsl(234, 11%, 52%) 1px solid;
+
+        img {
+            filter: brightness(1.5);
+        }
 
         .circle-back {
             background: hsl(233, 14%, 35%);
@@ -240,6 +258,8 @@ body {
 
     .list-bottom {
         background: hsl(233, 14%, 35%);
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
     }
 
     .completed {
@@ -259,5 +279,71 @@ body {
     #completed:hover,
     #clear-completed:hover {
         color: hsl(236, 33%, 92%);
+    }
+}
+
+@media screen and (max-width:430px) {
+    body {
+        min-width: 375px;
+        min-height: 730px;
+    }
+
+    .container {
+        width: 375px;
+        height: 730px;
+        
+        .header {
+            height: 200px;
+            background-image: url(./images/bg-desktop-dark.jpg);
+
+            .circle-back {
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        #new-todo {
+            width: 280px;
+            height: 45px;
+        }
+
+        .list-wrapper {
+            top: 170px;
+            left: 25px;
+            width: 325px;
+        }
+
+        .todo-item {
+            height: 50px;
+            .circle-back {
+                width: 45px;
+                height: 50px;
+            }
+        }
+
+        .filter {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+            width: 325px;
+            height: 50px;
+            border-radius: 5px;
+            box-sizing: border-box;
+            top: 70px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hint {
+            top: 80px;
+        }
+    }
+
+    .night {
+        .header {
+            background-image: url(./images/bg-mobile-dark.jpg);
+        }
+
+        .filter {
+            background: hsl(233, 14%, 35%);
+        }
     }
 }

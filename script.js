@@ -21,7 +21,7 @@ var deleteAllcompleted = document.getElementById('clear-completed');
 var currentFilter = "all";
 var itemNum = document.getElementById("item-num");
 model.addEventListener('click', function () {
-    if (model.src.includes('./images/incon-sun.svg')) {
+    if (model.src.includes('icon-sun.svg')) {
         model.src = './images/icon-moon.svg';
     }
     else {

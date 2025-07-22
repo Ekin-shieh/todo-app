@@ -17,7 +17,7 @@ type Task = {
 };
 
 model.addEventListener('click', ()=>{
-    if (model.src.includes('./images/incon-sun.svg')) {
+    if (model.src.includes('icon-sun.svg')) {
         model.src = './images/icon-moon.svg';
     } else {
         model.src = './images/icon-sun.svg';
