@@ -77,16 +77,22 @@ body {
         outline: none;
     }
 
-    #todo-list {
+    .list-wrapper {
         position: absolute;
         top: 240px;
         left: 450px;
         width: 540px;
         display: flex;
         flex-direction: column;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
         border-radius: 5px;
         background-color: white;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+    }
+
+    #todo-list {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
     }
 
     .todo-item {
@@ -209,7 +215,7 @@ body {
     }
 
     #todo-list {
-        background-color: hsl(233, 14%, 35%);
+        background: hsl(233, 14%, 35%);
         color: hsl(236, 33%, 92%);
     }
 
@@ -217,7 +223,7 @@ body {
         border-bottom: hsl(234, 11%, 52%) 1px solid;
 
         .circle-back {
-            background-color: hsl(233, 14%, 35%);
+            background: hsl(233, 14%, 35%);
 
             .circle {
                 background: hsl(234, 11%, 52%);
@@ -230,6 +236,10 @@ body {
                 }
             }
         }
+    }
+
+    .list-bottom {
+        background: hsl(233, 14%, 35%);
     }
 
     .completed {
