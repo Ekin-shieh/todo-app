@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
+
+body {
+    margin: 0;
+    min-width: 1440px;
+    min-height: 800px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Josefin Sans';
+    font-weight: 500;
+}
+
+.container {
+    width: 1440px;
+    height: 800px;
+    position: relative; 
+    
+    .header {
+        width: 100%;
+        height: 300px;
+        background-image: url(./images/bg-desktop-light.jpg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .circle-back {
+            margin-top: 40px;
+        }
+    }
+
+    form {
+        color: white;
+        font-weight: 700;
+        letter-spacing: 0.4em;
+        font-size: 30px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #change-model {
+        margin-left: auto;
+    }
+
+    .circle-back {
+        width: 60px;
+        height: 60px;
+        background-color: white;
+        border-top-left-radius:5px;
+        border-bottom-left-radius:5px; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .circle {
+        width: 22px;
+        height: 22px;
+        background: hsl(236, 33%, 92%);
+        border-radius: 50%;
+        position: relative;
+
+        .circle-img {
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+
+            img {
+                margin: auto;
+            }
+        }
+
+        .completed {
+            top: 0;
+            left: 0;
+            width: 22px;
+            height: 22px;
+            background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%)) !important;
+        }
+    }
+
+    .disabled {
+        width: 20px;
+        height: 20px;
+        pointer-events: none;
+        border: 1px solid hsl(236, 33%, 92%);
+        background: white;
+    }
+
+    #new-todo {
+        width: 480px;
+        height: 60px;
+        border: none;
+        border-top-right-radius:5px;
+        border-bottom-right-radius:5px;
+        box-sizing: border-box;
+        margin-top: 40px;
+        font-family: inherit;
+        font-weight: 500;
+        font-size: 15px;
+    }
+
+    #new-todo:focus {
+        outline: none;
+    }
+
+    #todo-list {
+        position: absolute;
+        top: 240px;
+        left: 450px;
+        width: 540px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 5px;
+        background-color: white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+    }
+
+    .todo-item {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid hsl(236, 33%, 92%);
+
+        img {
+            margin-left: auto;
+            margin-right: 20px;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: hsl(234, 39%, 85%);
+        }
+    }
+
+    .list-bottom {
+        width: 100%;
+        height: 50px;
+        color: hsl(234, 11%, 52%);
+        padding: 20px;
+        box-sizing: border-box;
+        display: grid;
+        align-items: center;
+        grid-template-columns: 3fr 1fr 1fr 1fr 3fr;
+        font-size: 12px;
+    }
+
+    #active:hover,
+    #all:hover,
+    #completed:hover,
+    #clear-completed:hover {
+        color: black;
+        font-weight: 700;
+    }
+
+    .selected {
+        color: hsl(220, 98%, 61%) !important;
+        font-weight: 700;
+    }
+
+    #clear-completed {
+        margin-left: auto;
+    }
+
+    .circle:hover {
+        background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    }
+}
+
+.night {
+    background: black;
+    
+    .header {
+        background-image: url(./images/bg-desktop-dark.jpg);
+    }
+
+    .circle-back {
+        background-color: hsl(233, 14%, 35%);
+    }
+
+    .circle {
+        background: hsl(234, 11%, 52%);
+
+        .circle-img {
+            background: hsl(233, 14%, 35%);
+            img {
+                display: none;
+            }
+        }
+
+        .completed {
+            img {
+                display: block;
+            }
+        }
+    }
+
+    .disabled {
+        background: hsl(233, 14%, 35%);
+    }
+
+    #new-todo {
+        background: hsl(233, 14%, 35%);
+        color: hsl(236, 33%, 92%);
+    }
+
+    #todo-list {
+        background-color: hsl(233, 14%, 35%);
+        color: hsl(236, 33%, 92%);
+    }
+
+    .todo-item {
+        border-bottom: hsl(234, 11%, 52%) 1px solid;
+    }
+
+    #active:hover,
+    #all:hover,
+    #completed:hover,
+    #clear-completed:hover {
+        color: hsl(236, 33%, 92%);
+    }
+}
